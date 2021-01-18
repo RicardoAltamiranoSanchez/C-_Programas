@@ -1,0 +1,270 @@
+#include <iostream>
+#include<windows.h>
+#include <conio.h>
+using namespace std;
+
+void gotoxy(int x,int y)
+{
+	HANDLE cow;
+	cow=GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD pos;
+	pos.X=x;
+	pos.Y=y;
+	SetConsoleCursorPosition(cow,pos);
+}
+class parcial
+{
+private:
+	int frac,res,cont;
+public:
+	parcial();
+	void factorial();
+	void codigo_fac();
+	void hola();
+	void codigo_hola();
+};
+parcial::parcial()
+{
+	frac=0;
+	res=0;
+	cont=0;
+}
+void parcial::factorial()
+{
+	res=1;
+	cout<<"Ingrese el numero que va factorial"<<endl;
+	cin>>frac;
+	for(cont=1; cont<=frac; cont++)
+	{
+		res*=cont;
+	}
+	cout<<"El resultado es:"<<res<<endl;
+}
+void parcial::codigo_fac()
+{
+	gotoxy(60,1);
+	cout<<"#include <iostream.h>"<<endl;
+	gotoxy(60,2);
+	cout<<"void main()"<<endl;
+	gotoxy(60,3);
+	cout<<"{"<<endl;
+	gotoxy(60,4);
+	cout<<"int frac,res,cont"<<endl;
+	gotoxy(60,5);
+	cout<<"cout<<\"ingrese el numero\"<<endl; "<<endl;
+	gotoxy(60,6);
+	cout<<"for(cont=1;cont<=frac; con++)"<<endl;
+	gotoxy(60,7);
+	cout<<"res*=cont;"<<endl;
+	gotoxy(60,8);
+	cout<<"cout<<\"El resultado es\"<<endl;"<<endl;
+	gotoxy(60,9);
+	cout<<"}"<<endl;
+}
+void parcial::hola()
+{
+	//int main()
+	//{
+	cout<<"hola"<<" "<<"mundo"<<" "<<"buenos"<<" "<<"dias"<<endl;
+	//}
+	
+	
+}
+void parcial::codigo_hola()
+{
+	gotoxy(60,0);
+	cout<<"#include <iostream.h>"<<endl;
+	gotoxy(60,1);
+	cout<<"void main()"<<endl;
+	gotoxy(60,2);
+	cout<<"{"<<endl;
+	gotoxy(60,3);
+	cout<<"cout<<\"hola<<\" \"<<\"mundo\"<<\" \"<<\"buenos\"<<\"dias\"<<"<<endl;
+	gotoxy(60,4);
+	cout<<"}"<<endl;
+}
+
+
+
+int main()
+{
+	parcial pa;
+	bool salir=false;
+	int opcion;
+	int opcion_cuatrimestre;
+	int opcion_parcial;
+	int opcion_ejercicios_parcial1=0;
+	gotoxy(40,8);
+	cout<<"INTRUCCIONES"<<endl;
+	gotoxy(40,10);
+	cout<<"El programa solo se manejara por numero reales 1 a 3"<<endl;
+	gotoxy(40,12);
+	cout<<"Si no hace como las intrucciones marcara error."<<endl;
+	gotoxy(40,14);
+	cout<<"Al acabar la ejecucion del ejercicio se mostrara el codigo del ejercicio"<<endl;
+	gotoxy(40,16);
+	cout<<"el programa fue optimizado para serlo mas simple y entendible al usuario,"<<endl;
+	gotoxy(40,18);
+	cout<<"Creando solo dos clases para todos los ejercicios,"<<endl;
+	gotoxy(40,20);
+	cout<<"uno llamado parcial 1 y otro parcial 2 eso es todo"<<endl;
+	gotoxy(40,22);
+	cout<<"GRACIAS"<<endl;
+	Sleep(15000);
+	while(!salir)
+	{ 
+		//inicio de primer while menu principal
+		system("CLS");
+		gotoxy(90,1);
+		cout<<"Fecha  "<<" 8 de diciembre de 2019"<<endl;
+		gotoxy(90,2);
+		cout<<"Alumno  "<<"Ricardo Altamirano sanchez"<<endl;
+		gotoxy(90,3);
+		cout<<"Ingeneria en sistemas computacionales"<<endl;
+		gotoxy(90,4);
+		cout<<"4-A"<<endl;
+		gotoxy(50,5);
+		cout<<"PROYECTO DE PROGRAMACION DE POO!!"<<endl;
+		
+		gotoxy(50,10);
+		cout<<" 1 Entrar al menu"<<endl;
+		gotoxy(50,12);
+		cout<<" 2 salir de menu"<<endl;
+		gotoxy(50,14);
+		cin>>opcion;
+		if(opcion ==1)
+		{//primer if
+			
+			
+			
+			while(opcion_parcial!=3)//menu del los parciales
+			{
+				system("CLS");
+				gotoxy(90,1);
+				cout<<"Fecha  "<<" 8 de diciembre de 2019"<<endl;
+				gotoxy(90,2);
+				cout<<"Alumno  "<<"Ricardo Altamirano sanchez"<<endl;
+				gotoxy(90,3);
+				cout<<"Ingeneria en sistemas computacionales"<<endl;
+				gotoxy(90,4);
+				cout<<"4-A"<<endl;
+				
+				gotoxy(50,5);
+				cout<<"PRACTICAS DEL CUATRIMESTRE"<<endl;
+				
+				gotoxy(50,10);
+				cout<<" 1:Primer parcial"<<endl;
+				gotoxy(50,12);
+				cout<<" 2:Segundo parcial"<<endl;
+				gotoxy(50,14);
+				cout<<" 3:Regresar"<<endl;
+				cin>>opcion_parcial;
+				
+				
+				
+				if(opcion_parcial==1)
+				{//inico del menu de cuatrimestre
+					while(opcion_ejercicios_parcial1!=6)
+					{//10
+						system("CLS");
+						gotoxy(90,1);
+						cout<<"Fecha  "<<" 8 de diciembre de 2019"<<endl;
+						gotoxy(90,2);
+						cout<<"Alumno  "<<"Ricardo Altamirano sanchez"<<endl;
+						gotoxy(90,3);
+						cout<<"Ingeneria en sistemas computacionales"<<endl;
+						gotoxy(90,4);
+						cout<<"4-A"<<endl;
+						gotoxy(50,2);
+						cout<<"PRIMER PARCIAL EJERCIOS";
+						gotoxy(50,4);
+						cout<<"1:Factorial de un numero"<<endl;
+						gotoxy(50,6);
+						cout<<"2:Hola mundo"<<endl;
+						gotoxy(50,8);
+						cout<<"3:Pedir un numero entero"<<endl;
+						gotoxy(50,10);
+						cout<<"4:Introducir calificaion"<<endl;
+						gotoxy(50,12);
+						cout<<"5:Suma de tres numeros"<<endl;
+						gotoxy(50,14);
+						cout<<"6:Regresar"<<endl;
+						cin>>opcion_ejercicios_parcial1;
+						
+						switch(opcion_ejercicios_parcial1)
+						{//inico de procedimientos de ejercios del switch 5
+							
+						case 1 :
+							system("CLS");
+							
+							
+							pa.factorial();
+							pa.codigo_fac();
+							
+							system("pause");
+							break;
+						case 2:
+							system("CLS");
+							pa.hola();
+							pa.codigo_hola();
+							system("pause");
+							break;
+						}//fin del switch del menu de procedimiento del switch 5 
+						
+						
+					}//10
+					if(opcion_parcial==2)
+					{
+						
+						system("CLS");
+						gotoxy(90,1);
+						cout<<"Fecha  "<<" 8 de diciembre de 2019"<<endl;
+						gotoxy(90,2);
+						cout<<"Alumno  "<<"Ricardo Altamirano sanchez"<<endl;
+						gotoxy(90,3);
+						cout<<"Ingeneria en sistemas computacionales"<<endl;
+						gotoxy(90,4);
+						cout<<"4-A"<<endl;
+						gotoxy(50,2);
+						cout<<"SEGUNDO PARCIAL EJERCICIOS";
+					}
+					if(opcion== 3)
+					{
+						salir=true;
+						
+					}
+					
+					
+				}//fin del switch del menu del cuatrimestre
+				
+				
+				
+				
+			}//fin del menu de los parciales
+			
+			
+			
+			
+			
+			
+		}//fin del menu del programas
+		
+		
+		
+		if(opcion==2)
+		{
+			
+			system("CLS");
+			gotoxy(40,10);
+			cout<<"Adios"<<endl;
+			salir=true;
+		}
+		
+	}//fin del primer while fin de menu principal
+	
+	
+	
+	system("pause");
+	return 0;
+	
+}

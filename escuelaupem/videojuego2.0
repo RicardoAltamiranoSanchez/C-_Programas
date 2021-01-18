@@ -1,0 +1,225 @@
+#include<iostream>
+#include<stdio.h>
+#include<windows.h>
+#include <conio.h>
+#include<stdlib.h>
+#define izquierda 75
+#define derecha 77
+#define arriba 80
+#define abajo 72
+
+using namespace std;
+void gotoxy(int x,int y)
+{
+	HANDLE cow;
+	cow=GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD  pos;
+	pos.X=x;
+	pos.Y=y;
+	SetConsoleCursorPosition(cow,pos);
+}
+void ocultar_cursor()
+{
+	HANDLE cow;
+	cow=GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO cii;
+	cii.dwSize=1000;
+	cii.bVisible=FALSE;
+	SetConsoleCursorInfo(cow,&cii);
+}
+void pintar_limites()
+{
+	char a,b,c,d,e,f;
+	a=205;
+	b=186;
+	c=187;
+	d=188;
+	e=201;
+	f=200;
+	for(int n=2; n<130; n++)
+	{
+		gotoxy(n,4);
+		cout<<a;
+		gotoxy(n,30);
+		cout<<a;
+		
+	}
+	for(int n=5;n<30;n++)
+	{
+		gotoxy(2,n);
+		cout<<b;
+		gotoxy(129,n);
+		cout<<b;
+		
+	}
+	
+	gotoxy(129,4);
+	cout<<c;
+	gotoxy(129,30);
+	cout<<d;
+	gotoxy(2,4);
+	cout<<e;
+	gotoxy(2,30);
+	cout<<f;
+	
+	
+	
+}
+class NAVE
+{
+private: 
+	int x,y;
+	int corazon;
+	int vidas;
+public:
+	NAVE(int p_x,int p_y,int p_corazon,int p_vidas):x(p_x),y(p_y),corazon(p_corazon),vidas(p_vidas){};
+	void pintar();
+	void mover();
+	void borrar();
+	void pintar_corazon();
+	void morir();
+	
+};
+
+void NAVE::pintar()
+{
+	char a,b,c,d,e,f,g;
+	a=60,b=186,c=207,d=41,e=190,f=62,g=206;
+	gotoxy(x,y);
+	cout<<" "<<" "<<g;
+	gotoxy(x,y+1);
+	cout<<" "<<a<<c<<f;
+	gotoxy(x,y+2);
+	cout<<a<<e<<e<<e<<f;
+}
+void NAVE::borrar()
+{
+	gotoxy(x,y);
+	cout<<"        ";
+	gotoxy(x,y+1);
+	cout<<"        ";
+	gotoxy(x,y+2);
+	cout<<"        ";
+
+}
+void NAVE::mover()
+{
+	
+	
+	
+	if(kbhit())
+	{
+		
+		char tecla=getch();
+		borrar();
+		if(tecla==izquierda && x>3)x--;
+		if(tecla==derecha && x<123)x++;
+		if(tecla==abajo && y>6)y--;
+		if(tecla==arriba && y<27 )y++;
+		pintar();
+		
+		
+	}
+	Sleep(30);
+	
+	
+}
+void NAVE::pintar_corazon()
+{
+	char a;
+	a=3;
+	gotoxy(98,2);
+	cout<<"Vidas "<<vidas;
+	gotoxy(110,2);
+	cout<<"Salud";
+	gotoxy(118,2);
+	cout<<"   ";
+	for(int n=0; n<corazon; n++)
+	{
+		gotoxy(118+n,2);
+		cout<<a;
+	}
+	
+	
+}
+void NAVE::morir()
+{
+	if(corazon==0)
+	{
+		borrar();
+		gotoxy(x,y);
+		cout<<"  **  ";
+		gotoxy(x,y+1);
+		cout<<" **** ";
+		gotoxy(x,y+2);
+		cout<<" ***  ";
+		Sleep(200);
+		borrar();
+		gotoxy(x,y);
+		cout<<"* *** *";
+		gotoxy(x,y);
+		cout<<"  *** ";
+		gotoxy(x,y);
+		cout<<"*  *** *";
+		Sleep(200);
+		borrar();
+		vidas--;
+		corazon=3;
+		pintar_corazon();
+		pintar();
+	}
+	
+}
+class AST{
+private:
+		int x,y;
+public:
+	AST(int p_x,int p_y):x(p_x),y(p_y){};
+	void pintar();
+	void mover();
+};
+void AST::pintar()
+{
+	gotoxy(x,y);
+	cout<<"*";
+}
+void AST::mover()
+{
+	gotoxy(x,y);
+	cout<<" ";
+	y++;
+	
+	if(y>29)
+	{
+		x=rand()%120+4;
+		y=7;
+	}
+	pintar();
+	
+}
+
+
+int main()
+{
+	ocultar_cursor();
+	pintar_limites();
+	
+	
+	NAVE N(7,7,3,3);
+	N.pintar();
+	AST ast[3]={{3,7},{3,7},{3,7}};
+	bool fin_del_juego=false;
+	while(!fin_del_juego)
+	{
+		ast[0].mover();
+		ast[1].mover();
+		ast[2].mover();
+		N.morir();
+		N.mover();
+		N.pintar_corazon();
+		
+	}
+	
+	
+	return 0;
+}
